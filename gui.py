@@ -11,6 +11,9 @@ OptionList = [
 def clickMe():
     label.configure(text= 'Hello ' + name.get())
 
+def clearTextInput():
+    textExample.delete("1.0","end")
+
 app = tk.Tk()
 
 app.geometry('300x400')
@@ -20,7 +23,6 @@ variable.set(OptionList[0])
 
 opt = tk.OptionMenu(app, variable, *OptionList)
 opt.config(width=28, font=('Helvetica', 12))
-opt.pack()
 opt.grid(column = 0, row = 0)
 
 label = ttk.Label(app, text = "Enter Your Name")
@@ -33,6 +35,11 @@ nameEntered.grid(column = 0, row = 2)
  
 button = ttk.Button(app, text = "Click Me", command = clickMe)
 button.grid(column= 0, row = 3)
+
+textExample=tk.Text(app, height=10)
+textExample.grid(column=0, row =4)
+btnRead=tk.Button(app, height=1, text="Clear", command=clearTextInput)
+btnRead.grid(column=0, row =5)
 
 
 app.mainloop()
