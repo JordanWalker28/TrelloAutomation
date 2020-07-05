@@ -5,7 +5,6 @@ from trello import TrelloClient
 import requests
 
 
-
 def create_board(board_name):
     url = "https://api.trello.com/1/boards/"
     querystring = {"name": board_name, "key": api_key, "token": token}
@@ -25,8 +24,8 @@ def change_dropdown(*args):
     print( tkvar.get() )
     
 def clickMe():
-    print(nameEntered)
-    textExample.delete("1.0","end")
+    boardName = name.get()
+    create_board(boardName)
 
 #last_board = all_boards[-1]
 #print(last_board.name)
@@ -77,8 +76,9 @@ tkvar.trace('w', change_dropdown)
 
 label = ttk.Label(mainframe, text = "Create Board:").grid(column = 0, row = 2)
 
-nameEntered = ttk.Entry(mainframe, width = 15).grid(column = 1, row = 2)
-print(nameEntered)
+name = StringVar()
+nameEntered = ttk.Entry(mainframe, width = 15, textvariable = name)
+nameEntered.grid(column = 1, row = 2)
 
 button = ttk.Button(mainframe, text = "Click Me", command = clickMe).grid(column= 2, row = 2)
 
